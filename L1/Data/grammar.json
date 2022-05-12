@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "Name": "Hamari",
+    "Image": "H",
+    "Description": ""
+  },
+  {
+    "Id": 2,
+    "Name": "Bilur",
+    "Image": "B",
+    "Description": ""
+  },
+  {
+    "Id": 3,
+    "Name": "Flogfar",
+    "Image": "F",
+    "Description": ""
+  },
+  {
+    "Id": 4,
+    "Name": "Ostur",
+    "Image": "O",
+    "Description": ""
+  },
+  {
+    "Id": 5,
+    "Name": "Glas",
+    "Image": "G",
+    "Description": ""
+  }
+]

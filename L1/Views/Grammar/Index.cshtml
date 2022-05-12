@@ -1,0 +1,16 @@
+﻿@model L1.ViewModels.GrammarGameVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Skilja</h1>
+
+<h4>Ord ella tal verdur sagt</h4>
+
+ <a class="btn btn-success" title="@Model.PresentedCard.Name" asp-action="Create"> @Model.PresentedCard.Name </a>
+
+@foreach(var card in Model.Cards)
+{
+    <a class="btn btn-success" title="@card.Image" asp-action="Create"> @card.Image </a>
+}
