@@ -11,17 +11,26 @@ namespace L1.Models
         public string Name { get; set; }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-        public ChallengeType ChallengeType { get; set; }
+        public string Text { get; set; }
 
-        public bool OpenForAll { get; set; }
+
+        public ChallengeType Type { get; set; }
+
+        public ChallengeDifficultyLevel DifficultyLevel { get; set; }
+
+        public bool IsOpenForAll { get; set; }
     }
 
     public enum ChallengeType
     {
-        Talk, 
-        TalkUnderstand, 
-        Understand, 
-        UnderstandRead,
-        UnderstandWrite
+        CompleteTheSentence,
+        TextAndQtoWord
+    }
+
+    public enum ChallengeDifficultyLevel
+    {
+        Easy, 
+        Medium, 
+        Hard
     }
 }

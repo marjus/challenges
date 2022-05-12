@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using L1.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace L1.Data
@@ -9,5 +10,7 @@ namespace L1.Data
             : base(options)
         {
         }
+
+        public DbSet<Challenge> Challenges { get; set; }
     }
 }

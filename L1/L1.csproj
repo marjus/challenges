@@ -8,7 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\CompleteSentence\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="Views\CompleteSentence\Create.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

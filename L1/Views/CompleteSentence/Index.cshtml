@@ -1,25 +1,77 @@
-﻿
+﻿@model List<Challenge>
+
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Manglandi ord";
 }
 
-<h1>Enda setning</h1>
+<h1>Manglandi ord</h1>
 
-<label>Setningur</label>
-<input name="challenge" type="text" />
-<br /><br />
-<label title="">Valmöguleiki 1</label>
-<input name="option1" type="text" />
-<br /><br />
-<label title="">Valmöguleiki 2</label>
-<input name="option2" type="text" />
-<br /><br />
-<label title="">Valmöguleiki 3</label>
-<input name="option3" type="text" />
-<br /><br />
-<label title="">Valmöguleiki 4</label>
-<input name="option4" type="text" />
+<div class="row">
+    <div class="col-md-6">
+        <h1 class="text-info">Mangland ord</h1><span class="badge badge-light"></span>
+    </div>
 
-<br /><br />
-<button class="btn btn-warning"><i class="fas fa-plus"></i> Trýst út till brúkara</button>
-<button class="btn btn-success"><i class="fas fa-plus"></i> Goym sum standard venjing</button>
+    <div class="col-md-6 mt-3">
+        <div class="float-right">
+            <p>
+                <a class="btn btn-outline-info" asp-area="" asp-controller="" asp-action="" data-toggle="modal" data-target="#covidinformation"><i class="fas fa-question"></i> Hjálp</a>
+                <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i> Nýtt</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th scope="col">
+                @Html.DisplayNameFor(model => model[0].Name)
+            </th>
+
+            <th scope="col">   
+            </th>
+            <th scope="col">
+               
+            </th>
+            <th scope="col">
+               
+            </th>
+            <th scope="col">
+               
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-light">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsOpenForAll)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DifficultyLevel)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+               
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-info"><i class="fas fa-edit"></i> Broyt</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="text-info"><i class="fas fa-trash"></i> X</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
