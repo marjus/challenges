@@ -28,6 +28,24 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+# Publish the artifact
+- task: DotNetCoreCLI@2
+  displayName: 'Förbereder publicering'
+  inputs:
+    command: 'publish'
+    # This need to be false in order for the specific project to be published
+    publishWebProjects: False
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+# Publish the artifact for the pipelines to use
+- task: PublishBuildArtifacts@1
+  displayName: 'Publiserar'
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'L1'
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
