@@ -13,6 +13,13 @@ namespace L1.Models
 
         public string Text { get; set; }
 
+        public string Description { get; set; }
+
+        public string Question { get; set; }
+
+        public int CorrectOptionId { get; set; }
+
+        public List<ChallengeOption> Options { get; set; }
 
         public ChallengeType Type { get; set; }
 
@@ -21,10 +28,17 @@ namespace L1.Models
         public bool IsOpenForAll { get; set; }
     }
 
+    public class ChallengeOption
+    {
+        public int Id { get; set; }
+        public string Content { get; set; }
+    }
+
     public enum ChallengeType
     {
-        CompleteTheSentence,
-        TextAndQtoWord
+        CompleteSentence,
+        TextAndQtoWord,
+        MatchWords
     }
 
     public enum ChallengeDifficultyLevel
