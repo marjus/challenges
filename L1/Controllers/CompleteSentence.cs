@@ -17,7 +17,7 @@ namespace L1.Controllers
         {
        //     var challenges = _context.Challenges.Where(c=> c.Type == Models.ChallengeType.CompleteTheSentence).ToList();
             var challenges = new List<Challenge>();
-            challenges.Add(new Challenge { Id = 1, Name = "Enda setningin", DifficultyLevel = ChallengeDifficultyLevel.Medium, IsOpenForAll = true, Text = "Enda setningin", Type = ChallengeType.CompleteSentence };
+            challenges.Add(new Challenge { Id = 1, Name = "Enda setningin", DifficultyLevel = ChallengeDifficultyLevel.Medium, IsOpenForAll = true, Text = "Enda setningin", Type = ChallengeType.CompleteSentence });
 
             return View(challenges);
         }
