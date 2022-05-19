@@ -17,15 +17,15 @@ namespace L1.Models
 
         public string Question { get; set; }
 
-        public int CorrectOptionId { get; set; }
-
-        public List<ChallengeOption> Options { get; set; }
-
         public ChallengeType Type { get; set; }
 
         public ChallengeDifficultyLevel DifficultyLevel { get; set; }
 
         public bool IsOpenForAll { get; set; }
+
+        public int CorrectOptionId { get; set; }
+
+        public List<ChallengeOption> Options { get; set; }
     }
 
     public class ChallengeOption

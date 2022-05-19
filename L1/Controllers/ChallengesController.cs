@@ -45,7 +45,22 @@ namespace L1.Controllers
                 }
             });
 
-            return JsonSerializer.Serialize(challenges);
+            challenges.Challenges.Add(new Challenge
+            {
+                Id = 2,
+                Name = "Match the word",
+                Text = "Hammer",
+                
+                CorrectOptionId = 2,
+                Options = new List<ChallengeOption>() {
+                    new ChallengeOption { Id = 1, Content = "B" },
+                    new ChallengeOption { Id = 2, Content = "H" },
+                    new ChallengeOption { Id = 3, Content = "G" },
+                    new ChallengeOption { Id = 4, Content = "L" },
+                }
+            });
+
+            return JsonSerializer.Serialize(challenges, new JsonSerializerOptions {  DefaultIgnoreCondition= System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull});
         }
     }
 }
