@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Enda setning",
+    "description": "Enda setningin",
+    "text": "Grasid er __",
+    "question": "Hvönn lit er grasid",
+    "forceDisplay": true,
+    "correctAnswer": 3,
+    "type" :  "completeSentence",
+    "options": [
+      {
+        "id": 1,
+        "content": "Svart"
+      },
+      {
+        "id": 2,
+        "content": "Blátt"
+      },
+      {
+        "id": 3,
+        "content": "Grönt"
+      },
+      {
+        "id": 4,
+        "content": "Gult"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Enda setning",
+    "description": "Enda setningin",
+    "text": "Vatn er __",
+    "question": "Hvat er vatn?",
+    "forceDisplay": false,
+    "correctAnswer": 1,
+    "type": "completeSentence",
+    "options": [
+      {
+        "id": 1,
+        "content": "Vátt"
+      },
+      {
+        "id": 2,
+        "content": "Turt"
+      },
+      {
+        "id": 3,
+        "content": "Ljóst"
+      },
+      {
+        "id": 4,
+        "content": "Hart"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Mynd og ord",
+    "description": "Vel rätta ordid",
+    "text": "",
+    "question": "",
+    "forceDisplay": false,
+    "correctAnswer": 1,
+    "type": "matchWords",
+    "options": [
+      {
+        "id": 1,
+        "content": "Pera"
+      },
+      {
+        "id": 2,
+        "content": "Hamari"
+      },
+      {
+        "id": 3,
+        "content": "Bilur"
+      },
+      {
+        "id": 4,
+        "content": "Hús"
+      }
+    ]
+  }
+]

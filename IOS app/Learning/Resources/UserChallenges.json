@@ -1,0 +1,38 @@
+{
+    "Id":1,
+    "Key":"123",
+    "ActiveChallenge":{
+        "Id":211,
+        "Name":"Enda setning",
+        "Text":"Grasid er __",
+        "Description":"",
+        "Question":"Hvnn lit er grasid?",
+        "CorrectOptionId":1,
+        "Options":[
+            {
+                "Id":1,
+                "Content":"Gr\u00F6nt"
+            },
+            {
+                "Id":2,
+                "Content":"Reytt"
+                
+            },
+            {
+                "Id":3,
+                "Content":"Bl\u00E1tt"
+                
+            },
+            {
+                "Id":4,
+                "Content":"Svart"
+                
+            }],
+        "Type":0,
+        "DifficultyLevel":0,
+        "IsOpenForAll":false
+        
+    },
+    "Challenges":[{"Id":1,"Name":"Enda setning","Text":"Vatnid er __","Description":null,"Question":"Hvat er vatn?","CorrectOptionId":3,"Options":[{"Id":1,"Content":"Livandi"},{"Id":2,"Content":"Irriterandi"},{"Id":3,"Content":"V\u00E1tt"},{"Id":4,"Content":"Gr\u00F6nt"}],"Type":0,"DifficultyLevel":0,"IsOpenForAll":false}]
+    
+}

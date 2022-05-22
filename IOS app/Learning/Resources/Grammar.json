@@ -1,0 +1,30 @@
+[
+    {
+        
+        "id":1001,
+        "name":"Appelsin",
+        "description":"",
+        "image":"🍊"
+        },
+    {
+        
+        "id":1002,
+        "name":"Banan",
+        "description":"",
+        "image":"🍌"
+        },
+    {
+        
+        "id":1003,
+        "name":"Melón",
+        "description":"",
+        "image":"🍉"
+        },
+    {
+        
+        "id":1004,
+        "name":"Súrepli",
+        "description":"",
+        "image":"🍏"
+        }
+    ]
