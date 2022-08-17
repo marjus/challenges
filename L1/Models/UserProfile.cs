@@ -11,6 +11,10 @@ namespace L1.Models
 
         public string Name { get; set; }
 
+        public int CurrentSequencePosition { get; set; }
+
+        public ChallengeDifficultyLevel DifficultyLevel { get; set; }
+
         public List<Challenge> OpenChallenges { get; set; }
 
         public List<ChallengeResult> CompletedChallenges{ get; set; }

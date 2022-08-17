@@ -1,19 +1,28 @@
 ﻿using L1.Models;
 using L1.ApiModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Text.Json;
+using L1.Data;
 
 namespace L1.Controllers
 {
     public class ChallengesController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public ChallengesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public string Index(string key)
         {
             var challenges = new UserChallengesAM();
             challenges.Challenges = new List<Challenge>();
 
-            challenges.Id = 1;
-            challenges.Key = "123";
+            challenges.UserId = 1;
+            challenges.UserKey = "123";
 
             challenges.ActiveChallenge = new Challenge
             {
@@ -61,6 +70,32 @@ namespace L1.Controllers
             });
 
             return JsonSerializer.Serialize(challenges, new JsonSerializerOptions {  DefaultIgnoreCondition= System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull});
+        }
+
+        public string GetChallengesForUserProfile(UserProfile profile)
+        {
+            var userChallenges = _context.Challenges
+                .Where(c => c.DifficultyLevel == profile.DifficultyLevel)
+                .OrderBy(c=> c.OrderInSequence)
+                .ToList();
+            var challenges = new UserChallengesAM();
+
+            if (userChallenges.Any())
+            {
+                
+                challenges.Challenges = userChallenges;
+
+                // Fetch the next userChallenge in the list and set it as active
+#pragma warning disable CS8601 // Possible null reference assignment.
+                challenges.ActiveChallenge = userChallenges.SkipWhile(c => c.OrderInSequence <= profile.CurrentSequencePosition)
+                    .Skip(1)
+                    .DefaultIfEmpty(userChallenges[0])
+                    .FirstOrDefault();
+#pragma warning restore CS8601 // Possible null reference assignment.
+
+            }
+
+            return JsonSerializer.Serialize(challenges, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
         }
     }
 }

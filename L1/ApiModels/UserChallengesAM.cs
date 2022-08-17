@@ -4,8 +4,8 @@ namespace L1.ApiModels
 {
     public class UserChallengesAM
     {
-        public int Id { get; set; }
-        public string Key { get; set; }
+        public int UserId { get; set; }
+        public string? UserKey { get; set; }
 
         public Challenge ActiveChallenge { get; set; }
 
