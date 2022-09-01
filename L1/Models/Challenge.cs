@@ -19,7 +19,11 @@ namespace L1.Models
 
         public string? Question { get; set; }
 
+        public int TypeId { get; set; }
+
         public ChallengeType Type { get; set; }
+
+        public int DifficultyLevelId { get; set; }
 
         public ChallengeDifficultyLevel DifficultyLevel { get; set; }
 
