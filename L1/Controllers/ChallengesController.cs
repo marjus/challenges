@@ -1,19 +1,96 @@
 ﻿using L1.Models;
 using L1.ApiModels;
 using Microsoft.AspNetCore.Mvc;
+
 using System.Text.Json;
+using L1.Data;
+using Microsoft.EntityFrameworkCore;
+using L1.ViewModels;
 
 namespace L1.Controllers
 {
     public class ChallengesController : Controller
     {
-        public string Index(string key)
+        private readonly ApplicationDbContext _context;
+
+        public ChallengesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return _context.Challenges != null ?
+                        View(await _context.Challenges.ToListAsync()) :
+                        Problem("Entity set 'Challenges'  is null.");
+        }
+        /*
+                public string Index(string key)
+                {
+                  //  return (_context.Challenges.Any() ? View(_context.Challenges.ToList() : Problem(""));
+
+                    var challenges = new UserChallengesAM();
+                    challenges.Challenges = new List<Challenge>();
+
+                    challenges.UserId = 1;
+                    challenges.UserKey = "123";
+
+                    challenges.ActiveChallenge = new Challenge
+                    {
+                        Id = 211,
+                        Name = "Complete the sentence",
+                        Text = "The grass is __",
+                        Question = "What color is the grass?",
+                        CorrectOptionId = 1,
+                        Options = new List<ChallengeOption>() { 
+                            new ChallengeOption { Id = 1, Content = "Green" }, 
+                            new ChallengeOption { Id = 2, Content = "Red" },
+                            new ChallengeOption { Id = 3, Content = "Blue" },
+                            new ChallengeOption { Id = 4, Content = "Black" },
+                        }
+                    };
+
+                    challenges.Challenges.Add(new Challenge
+                    {
+                        Id = 1,
+                        Name = "Complete the sentence",
+                        Text = "Water is __",
+                        Question = "Water is what??",
+                        CorrectOptionId = 3,
+                        Options = new List<ChallengeOption>() {
+                            new ChallengeOption { Id = 1, Content = "Alive" },
+                            new ChallengeOption { Id = 2, Content = "Annoying" },
+                            new ChallengeOption { Id = 3, Content = "Wet" },
+                            new ChallengeOption { Id = 4, Content = "Green" },
+                        }
+                    });
+
+                    challenges.Challenges.Add(new Challenge
+                    {
+                        Id = 2,
+                        Name = "Match the word",
+                        Text = "Hammer",
+
+                        CorrectOptionId = 2,
+                        Options = new List<ChallengeOption>() {
+                            new ChallengeOption { Id = 1, Content = "B" },
+                            new ChallengeOption { Id = 2, Content = "H" },
+                            new ChallengeOption { Id = 3, Content = "G" },
+                            new ChallengeOption { Id = 4, Content = "L" },
+                        }
+                    });
+
+                    return JsonSerializer.Serialize(challenges, new JsonSerializerOptions {  DefaultIgnoreCondition= System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull});
+                }
+        */
+
+        public string GetTestData()
         {
             var challenges = new UserChallengesAM();
             challenges.Challenges = new List<Challenge>();
 
-            challenges.Id = 1;
-            challenges.Key = "123";
+            challenges.UserId = 1;
+            challenges.UserKey = "123";
 
             challenges.ActiveChallenge = new Challenge
             {
@@ -22,12 +99,12 @@ namespace L1.Controllers
                 Text = "The grass is __",
                 Question = "What color is the grass?",
                 CorrectOptionId = 1,
-                Options = new List<ChallengeOption>() { 
-                    new ChallengeOption { Id = 1, Content = "Green" }, 
-                    new ChallengeOption { Id = 2, Content = "Red" },
-                    new ChallengeOption { Id = 3, Content = "Blue" },
-                    new ChallengeOption { Id = 4, Content = "Black" },
-                }
+                Options = new List<ChallengeOption>() {
+                            new ChallengeOption { Id = 1, Content = "Green" },
+                            new ChallengeOption { Id = 2, Content = "Red" },
+                            new ChallengeOption { Id = 3, Content = "Blue" },
+                            new ChallengeOption { Id = 4, Content = "Black" },
+                        }
             };
 
             challenges.Challenges.Add(new Challenge
@@ -38,11 +115,11 @@ namespace L1.Controllers
                 Question = "Water is what??",
                 CorrectOptionId = 3,
                 Options = new List<ChallengeOption>() {
-                    new ChallengeOption { Id = 1, Content = "Alive" },
-                    new ChallengeOption { Id = 2, Content = "Annoying" },
-                    new ChallengeOption { Id = 3, Content = "Wet" },
-                    new ChallengeOption { Id = 4, Content = "Green" },
-                }
+                            new ChallengeOption { Id = 1, Content = "Alive" },
+                            new ChallengeOption { Id = 2, Content = "Annoying" },
+                            new ChallengeOption { Id = 3, Content = "Wet" },
+                            new ChallengeOption { Id = 4, Content = "Green" },
+                        }
             });
 
             challenges.Challenges.Add(new Challenge
@@ -50,17 +127,201 @@ namespace L1.Controllers
                 Id = 2,
                 Name = "Match the word",
                 Text = "Hammer",
-                
+
                 CorrectOptionId = 2,
                 Options = new List<ChallengeOption>() {
-                    new ChallengeOption { Id = 1, Content = "B" },
-                    new ChallengeOption { Id = 2, Content = "H" },
-                    new ChallengeOption { Id = 3, Content = "G" },
-                    new ChallengeOption { Id = 4, Content = "L" },
-                }
+                            new ChallengeOption { Id = 1, Content = "B" },
+                            new ChallengeOption { Id = 2, Content = "H" },
+                            new ChallengeOption { Id = 3, Content = "G" },
+                            new ChallengeOption { Id = 4, Content = "L" },
+                        }
             });
 
-            return JsonSerializer.Serialize(challenges, new JsonSerializerOptions {  DefaultIgnoreCondition= System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull});
+            return JsonSerializer.Serialize(challenges, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
+
+        }
+
+        public string GetAllChallenges()
+        {
+            var userChallenges = _context.Challenges
+                .OrderBy(c => c.OrderInSequence)
+                .ToList();
+
+            var challenges = new UserChallengesAM();
+
+            if (userChallenges.Any())
+            {
+                challenges.Challenges = userChallenges;
+            }
+
+            return JsonSerializer.Serialize(challenges, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
+        }
+
+        public string GetChallengesForUserProfile(UserProfile profile)
+        {
+            var userChallenges = _context.Challenges
+                .Where(c => c.DifficultyLevel == profile.DifficultyLevel)
+                .OrderBy(c=> c.OrderInSequence)
+                .ToList();
+
+            var challenges = new UserChallengesAM();
+
+            if (userChallenges.Any())
+            {
+                
+                challenges.Challenges = userChallenges;
+
+                // Fetch the next userChallenge in the list and set it as active
+#pragma warning disable CS8601 // Possible null reference assignment.
+                challenges.ActiveChallenge = userChallenges.SkipWhile(c => c.OrderInSequence <= profile.CurrentSequencePosition)
+                    .Skip(1)
+                    .DefaultIfEmpty(userChallenges[0])
+                    .FirstOrDefault();
+#pragma warning restore CS8601 // Possible null reference assignment.
+
+            }
+
+            return JsonSerializer.Serialize(challenges, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
+        }
+
+        // GET: Challenges1/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Challenges == null)
+            {
+                return NotFound();
+            }
+
+            var challenge = await _context.Challenges
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (challenge == null)
+            {
+                return NotFound();
+            }
+
+            return View(challenge);
+        }
+
+        // GET: Challenges1/Create
+        public IActionResult Create()
+        {
+            var vm = new EditChallenge();
+
+            return View(vm);
+        }
+
+        // POST: Challenges1/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("OrderInSequence,Name,Text,Description,Question,Type,DifficultyLevel,IsOpenForAll,CorrectOptionId,Options")] Challenge challenge)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(challenge);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(challenge);
+        }
+
+        // GET: Challenges1/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context.Challenges == null)
+            {
+                return NotFound();
+            }
+
+            var challenge = await _context.Challenges.FindAsync(id);
+            if (challenge == null)
+            {
+                return NotFound();
+            }
+            
+            var vm = new EditChallenge();
+
+            vm.Challenge = challenge;
+
+            return View(vm);
+        }
+
+        // POST: Challenges1/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OrderInSequence,Name,Text,Description,Question,Type,DifficultyLevel,IsOpenForAll,CorrectOptionId")] Challenge challenge)
+        {
+            if (id != challenge.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(challenge);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ChallengeExists(challenge.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(challenge);
+        }
+
+        // GET: Challenges1/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Challenges == null)
+            {
+                return NotFound();
+            }
+
+            var challenge = await _context.Challenges
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (challenge == null)
+            {
+                return NotFound();
+            }
+
+            return View(challenge);
+        }
+
+        // POST: Challenges1/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Challenges == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Challenges'  is null.");
+            }
+            var challenge = await _context.Challenges.FindAsync(id);
+            if (challenge != null)
+            {
+                _context.Challenges.Remove(challenge);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ChallengeExists(int id)
+        {
+            return (_context.Challenges?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

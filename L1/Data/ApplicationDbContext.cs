@@ -12,5 +12,7 @@ namespace L1.Data
         }
 
         public DbSet<Challenge> Challenges { get; set; }
+
+        public DbSet<UserProfile> UserProfile { get; set; }
     }
 }
