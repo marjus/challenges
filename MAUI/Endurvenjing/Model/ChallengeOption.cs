@@ -1,8 +1,7 @@
-﻿namespace L1.Models
+﻿namespace Endurvenjing.Models;
+
+public class ChallengeOption
 {
-    public class ChallengeOption
-    {
-        public int Id { get; set; }
-        public string? Content { get; set; }
-    }
+    public int Id { get; set; }
+    public string? Content { get; set; }
 }

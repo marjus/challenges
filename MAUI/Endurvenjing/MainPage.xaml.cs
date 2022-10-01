@@ -1,13 +1,17 @@
-﻿namespace Endurvenjing;
+﻿
+using Endurvenjing.ViewModel;
+
+namespace Endurvenjing;
 
 public partial class MainPage : ContentPage
 {
 	
 
-	public MainPage()
+	public MainPage(Challenge viewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = viewModel;
+    }
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{

@@ -49,10 +49,12 @@
 	  <None Remove="ViewModel\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Model\" />
+	  <None Remove="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModel\" />
 	  <Folder Include="Model\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />

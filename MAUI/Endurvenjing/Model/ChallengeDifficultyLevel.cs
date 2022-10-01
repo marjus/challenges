@@ -1,4 +1,4 @@
-﻿namespace L1.Models
+﻿namespace Endurvenjing.Models
 {
     public enum ChallengeDifficultyLevel
     {

@@ -1,9 +1,8 @@
-﻿namespace L1.Models
+﻿namespace Endurvenjing.Models;
+
+public enum ChallengeType
 {
-    public enum ChallengeType
-    {
-        CompleteSentence,
-        TextAndQtoWord,
-        MatchWords
-    }
+    CompleteSentence,
+    TextAndQtoWord,
+    MatchWords
 }

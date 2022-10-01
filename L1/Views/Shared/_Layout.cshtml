@@ -10,45 +10,29 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">L1</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Challenges">Uppgávur</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
     </header>
     <div class="container">
-        <div class="sidenav">
-            <a href="Challenges">Uppgávur</a>
-         @* <a href="#" class="active">Samskifti</a>
-          <a href="#">Tosa</a>
-          <a href="#">Tosa + skilja</a>
-          <a href="Grammar">Skilja</a>
-          <a href="#">Skilja + lesa</a>
-          <a href="#">Skilja + skriva</a>
-          <a href="#">Lesa + skilja</a>
-          <a href="CompleteSentence">Enda setning</a>
-
-          <a href="#" class="active">Endurvenjing</a>
-          <a href="#">Tosa</a>
-          <a href="#">Tosa + skilja</a>
-          <a href="#">Skilja</a>
-          <a href="#">Skilja + lesa</a>
-          <a href="#">Skilja + skriva</a>
-          <a href="#">Lesa + skilja</a>
-          <a href="#">Skilja + lesa + tosa</a>*@
-        </div>
 
         <main role="main" class="pb-3">
             <div class="row">
