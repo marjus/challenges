@@ -5,7 +5,7 @@ namespace L1.ViewModels;
 
 public class EditChallenge
 {
-    
+    public int Id { get; set; }
 
     public Challenge Challenge { get; set; }    
 
@@ -16,13 +16,13 @@ public class EditChallenge
     public EditChallenge()
     {
         DifficultyLevels = new List<SelectListItem>();
-        DifficultyLevels.Add(new SelectListItem { Text = "Easy", Value = "E" });
-        DifficultyLevels.Add(new SelectListItem { Text = "Medium", Value = "M" });
-        DifficultyLevels.Add(new SelectListItem { Text = "Hard", Value = "H" });
+        DifficultyLevels.Add(new SelectListItem { Text = "Lætt", Value = "1" });
+        DifficultyLevels.Add(new SelectListItem { Text = "Miðal", Value = "2" });
+        DifficultyLevels.Add(new SelectListItem { Text = "Torført", Value = "3" });
 
         Types = new List<SelectListItem>();
-        Types.Add(new SelectListItem { Text = "T1", Value = "T1" });
-        Types.Add(new SelectListItem { Text = "T2", Value = "T2" });
-        Types.Add(new SelectListItem { Text = "T3", Value = "T3" });
+        Types.Add(new SelectListItem { Text = "Tala", Value = "1" });
+        Types.Add(new SelectListItem { Text = "Lestur", Value = "2" });
+        Types.Add(new SelectListItem { Text = "Skilja", Value = "3" });
     }
 }

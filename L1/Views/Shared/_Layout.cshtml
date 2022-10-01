@@ -22,9 +22,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -33,7 +30,8 @@
     </header>
     <div class="container">
         <div class="sidenav">
-          <a href="#" class="active">Samskifti</a>
+            <a href="Challenges">Uppgávur</a>
+         @* <a href="#" class="active">Samskifti</a>
           <a href="#">Tosa</a>
           <a href="#">Tosa + skilja</a>
           <a href="Grammar">Skilja</a>
@@ -49,14 +47,14 @@
           <a href="#">Skilja + lesa</a>
           <a href="#">Skilja + skriva</a>
           <a href="#">Lesa + skilja</a>
-          <a href="#">Skilja + lesa + tosa</a>
+          <a href="#">Skilja + lesa + tosa</a>*@
         </div>
 
         <main role="main" class="pb-3">
             <div class="row">
-                <div class="col-4">Venjing 7</div>
+@*                <div class="col-4">Venjing 7</div>
                 <div class="col-4">Rätt/totalt: 4/7</div>
-                <div class="col-4">Brúkari: 46</div>
+                <div class="col-4">Brúkari: 46</div>*@
             </div>
             @RenderBody()
             
