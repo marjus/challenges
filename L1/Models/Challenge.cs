@@ -19,7 +19,7 @@ namespace L1.Models
 
         [Display(Name = "Frágreiding")]
         public string? Description { get; set; }
-        [Display(Name = "Spurningur")]
+        [Display(Name = "Spurningur")]      
         public string? Question { get; set; }
 
         [Display(Name = "Slag")]
@@ -39,6 +39,6 @@ namespace L1.Models
         public int CorrectOptionId { get; set; }
 
         [Display(Name = "Svarmøguleikar")]
-        public List<ChallengeOption> Options { get; set; }
+        public List<ChallengeOption> Options     { get; set; }
     }
 }
