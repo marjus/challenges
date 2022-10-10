@@ -47,7 +47,15 @@
             <Style TargetType="RefreshView" ApplyToDerivedTypes="True">
                 <Setter Property="RefreshColor" Value="{StaticResource Primary}" />
             </Style>
-
+            <Style x:Key="ButtonSolid" TargetType="Button">
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                 <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="FontSize" Value="Title"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
             <Style x:Key="ButtonOutline" TargetType="Button">
                 <Setter Property="Background" Value="{StaticResource LightBackground}"/>
                 <Setter Property="TextColor" Value="{StaticResource Primary}"/>

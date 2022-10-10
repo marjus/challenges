@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Endurvenjing.MainPage"
-             xmlns:model="clr-namespace:Endurvenjing.Model"
+             xmlns:model="clr-namespace:Endurvenjing.Models"
              xmlns:viewmodel="clr-namespace:Endurvenjing.ViewModel"
              x:DataType="viewmodel:Challenge"
              Title="{Binding Title}">
 
-   <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto" RowSpacing="2">
+   <Grid ColumnDefinitions="*,*" ColumnSpacing="5"
+         RowDefinitions="Auto,*,Auto, Auto" RowSpacing="2"
+         Padding="5">
 
-        <!-- <Label
+        <Label
                 x:Name="TitleLabel"
                 Text="Vel rätta svarid"
                 SemanticProperties.HeadingLevel="Level1"
@@ -27,13 +29,13 @@
                 HorizontalOptions="Center"
                 Grid.Column="0"
                 Grid.Row="1"
-                /> -->
+                /> 
 
-         <Button Grid.Column="0" Grid.Row="1" FontSize="Title" Style="{StaticResource ButtonOutline}" Margin="8" BackgroundColor="Green" Text="Grönt" x:Name="Option1" SemanticProperties.Hint="Grasid er grönt" Clicked="Option1_Clicked" HorizontalOptions="CenterAndExpand"></Button>
-        <Button Grid.Column="1"  Grid.Row="1" FontSize="Large" BackgroundColor="Blue" Text="Blátt" x:Name="Option2" SemanticProperties.Hint="Grasid er gult" Clicked="Option2_Clicked" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Button>
-           <!-- <Button Grid.Column="0" Grid.Row="3" Text="Svart" BackgroundColor="Black" x:Name="Option3" SemanticProperties.Hint="Grasid er svart" Clicked="Option3_Clicked" HorizontalOptions="CenterAndExpand"></Button>
-                    <Button Grid.Column="1" Grid.Row="3" Text="Reytt" BackgroundColor="Red" x:Name="Option4" SemanticProperties.Hint="Grasid er reytt" Clicked="Option4_Clicked" HorizontalOptions="CenterAndExpand"></Button>
-               -->
+        <Button Grid.Column="0" Grid.Row="2"  BackgroundColor="Green" Text="Grönt" x:Name="Option1" SemanticProperties.Hint="Grasid er grönt" Clicked="Option1_Clicked" HorizontalOptions="FillAndExpand" FontSize="Title" ></Button>
+        <Button Grid.Column="1"  Grid.Row="2" BackgroundColor="Blue" Text="Blátt" x:Name="Option2" SemanticProperties.Hint="Grasid er gult" Clicked="Option2_Clicked" HorizontalOptions="FillAndExpand" FontSize="Title" ></Button>
+        <Button Grid.Column="0" Grid.Row="3" Text="Svart" BackgroundColor="Black" x:Name="Option3" SemanticProperties.Hint="Grasid er svart" Clicked="Option3_Clicked" HorizontalOptions="FillAndExpand" FontSize="Title" ></Button>
+        <Button Grid.Column="1" Grid.Row="3" Text="Reytt" BackgroundColor="Red" x:Name="Option4" SemanticProperties.Hint="Grasid er reytt" Clicked="Option4_Clicked" HorizontalOptions="FillAndExpand" FontSize="Title" ></Button>
+              
     </Grid>
 
 
