@@ -11,44 +11,40 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Woop</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav me-auto">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Woop</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav me-auto">
 
-        <li class="nav-item">
-          <a class="nav-link" href="Challenges">Uppgávur</a>
-        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Challenges">Uppgávur</a>
+                        </li>
 
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
     </header>
     <div class="container">
 
         <main role="main" class="pb-3">
-            <div class="row">
-@*                <div class="col-4">Venjing 7</div>
-                <div class="col-4">Rätt/totalt: 4/7</div>
-                <div class="col-4">Brúkari: 46</div>*@
-            </div>
+
             @RenderBody()
-            
+
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - L1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - L1 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
