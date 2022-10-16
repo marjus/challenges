@@ -234,7 +234,7 @@ namespace L1.Controllers
                 return NotFound();
             }
 
-            var challenge = await _context.Challenges.FindAsync(id);
+            var challenge = await _context.Challenges.Include(c => c.Options).SingleOrDefaultAsync(c => c.Id == id);
             if (challenge == null)
             {
                 return NotFound();
