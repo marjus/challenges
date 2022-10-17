@@ -207,6 +207,8 @@ namespace L1.Controllers
         {
             var vm = new EditChallenge();
 
+
+
             return View(vm);
         }
 
@@ -215,7 +217,7 @@ namespace L1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderInSequence,Name,Text,Description,Question,TypeId,DifficultyLevelId,IsOpenForAll,CorrectOptionId,Options")] Challenge challenge)
+        public async Task<IActionResult> Create( Challenge challenge)
         {
             if (ModelState.IsValid)
             {
