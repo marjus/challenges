@@ -26,11 +26,6 @@ public class EditChallenge
         Types.AddRange(typesOfChallenge);
 
         Challenge= new Challenge();
-        Challenge.Options = new List<ChallengeOption> {
-            new ChallengeOption{ Id=1, Content="a"},
-            new ChallengeOption{ Id=2,Content="b"},
-            new ChallengeOption{ Id=3,Content="c"},
-            new ChallengeOption{ Id=4,Content="d"}
-        };
+        Challenge.Options = new List<ChallengeOption>();
     }
 }

@@ -207,7 +207,10 @@ namespace L1.Controllers
         {
             var vm = new EditChallenge();
 
-
+            for(var i = 0; i < 4; i++)
+            {
+                vm.Challenge.Options.Add(new ChallengeOption { Id = i });
+            }
 
             return View(vm);
         }
@@ -237,11 +240,18 @@ namespace L1.Controllers
             }
 
             var challenge = await _context.Challenges.Include(c => c.Options).SingleOrDefaultAsync(c => c.Id == id);
-            if (challenge == null)
+
+            if (challenge == null || challenge.Options == null)
             {
                 return NotFound();
             }
-            
+
+            // Todo, flyta correctoptionid til Options
+            var correctOption = challenge.Options.SingleOrDefault(o => o.Id == challenge.CorrectOptionId);
+
+            if(correctOption != null)
+                correctOption.IsCorrect = true;
+
             var vm = new EditChallenge();
 
             vm.Id = id.Value;
