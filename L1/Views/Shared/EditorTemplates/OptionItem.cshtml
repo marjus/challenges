@@ -4,12 +4,12 @@
     string cssClass = Model.IsCorrect ? "alert alert-dismissible alert-success option" : "alert alert-dismissible alert-light option";
 }
 
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="@(cssClass)" >
-                <input asp-for="Content" class="form-control" title="Valmøguleiki" placeholder="Valmøguleiki" />
-                <input asp-for="IsCorrect" class="form-check-input OptionCorrect" title="Er rætt" /> Rætt svar
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
+<div class="col-md-6">
+    <div class="form-group">
+        <div class="@(cssClass)">
+            <input asp-for="Content" class="form-control" title="Valmøguleiki" placeholder="Valmøguleiki" />
+            <input asp-for="IsCorrect" class="form-check-input OptionCorrect"  title="Er rætt" /> <label asp-for="IsCorrect" class="form-check-label"></label>
+            <span asp-validation-for="Content" class="text-danger"></span>
         </div>
     </div>
+</div>
