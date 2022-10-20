@@ -246,12 +246,6 @@ namespace L1.Controllers
                 return NotFound();
             }
 
-            // Todo, flyta correctoptionid til Options
-            var correctOption = challenge.Options.SingleOrDefault(o => o.Id == challenge.CorrectOptionId);
-
-            if(correctOption != null)
-                correctOption.IsCorrect = true;
-
             var vm = new EditChallenge();
 
             vm.Id = id.Value;
@@ -265,7 +259,7 @@ namespace L1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,OrderInSequence,Name,Text,Description,Question,TypeId,DifficultyLevelId,IsOpenForAll,CorrectOptionId,Options")] Challenge challenge)
+        public async Task<IActionResult> Edit(int id, Challenge challenge)
         {
             if (id != challenge.Id)
             {

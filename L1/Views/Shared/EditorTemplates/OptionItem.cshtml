@@ -7,6 +7,7 @@
 <div class="col-md-6">
     <div class="form-group">
         <div class="@(cssClass)">
+            <input asp-for="Id" type="hidden" />
             <input asp-for="Content" class="form-control" title="Valmøguleiki" placeholder="Valmøguleiki" />
             <input asp-for="IsCorrect" class="form-check-input OptionCorrect"  title="Er rætt" /> <label asp-for="IsCorrect" class="form-check-label"></label>
             <span asp-validation-for="Content" class="text-danger"></span>
