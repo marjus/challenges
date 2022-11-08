@@ -7,7 +7,7 @@ public partial class MainPage : ContentPage
 {
 	
 
-	public MainPage(Challenge viewModel)
+	public MainPage(ChallengeViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

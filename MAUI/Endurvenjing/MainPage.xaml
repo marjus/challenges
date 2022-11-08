@@ -4,7 +4,7 @@
              x:Class="Endurvenjing.MainPage"
              xmlns:model="clr-namespace:Endurvenjing.Models"
              xmlns:viewmodel="clr-namespace:Endurvenjing.ViewModel"
-             x:DataType="viewmodel:Challenge"
+             x:DataType="viewmodel:ChallengeViewModel"
              Title="{Binding Title}">
 
    <Grid ColumnDefinitions="*,*" ColumnSpacing="5"
