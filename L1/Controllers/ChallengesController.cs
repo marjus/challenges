@@ -224,6 +224,11 @@ namespace L1.Controllers
         {
             if (ModelState.IsValid)
             {
+                var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+                
+                challenge.Options.Clear();
+                challenge.Options.AddRange(options);
+
                 _context.Add(challenge);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
