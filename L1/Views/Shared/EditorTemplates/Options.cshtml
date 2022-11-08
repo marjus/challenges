@@ -1,0 +1,9 @@
+﻿@model L1.Models.Challenge
+
+<legend>@Html.DisplayNameFor(c => c.Options)</legend>
+<div class="row">
+    @for (var i = 0; i < Model.Options.Count; i++)
+    {
+        @Html.EditorFor(model => model.Options[i], "OptionItem")
+    }
+</div>

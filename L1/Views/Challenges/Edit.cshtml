@@ -7,114 +7,74 @@
 <h1>Broyt uppgávu</h1>
 <form asp-action="Edit">
     <fieldset>
-<div class="row">
-    
-    
-        <div class="col-md-12">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="col-md-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Challenge.Id" />
 
-            <input asp-for="Challenge.CorrectOptionId" type="hidden" class="form-control" id="selectedOptionId" />
-
-            <div class="form-group">
-                <label asp-for="Challenge.Name" class="control-label"></label>
-                <input asp-for="Challenge.Name" class="form-control" />
-                <span asp-validation-for="Challenge.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Challenge.Text" class="control-label"></label>
-                <input asp-for="Challenge.Text" class="form-control" />
-                <span asp-validation-for="Challenge.Text" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Challenge.Description" class="control-label"></label>
-                <input asp-for="Challenge.Description" class="form-control" />
-                <span asp-validation-for="Challenge.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Challenge.Question" class="control-label"></label>
-                <input asp-for="Challenge.Question" class="form-control" />
-                <span asp-validation-for="Challenge.Question" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Challenge.OrderInSequence" class="control-label"></label>
-                <input asp-for="Challenge.OrderInSequence" class="form-control" />
-                <span asp-validation-for="Challenge.OrderInSequence" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Challenge.Type" class="control-label"></label>
-                <select asp-for="Challenge.TypeId" asp-items="@Model.Types" class="form-select" title="Slag"></select>
-                <span asp-validation-for="Challenge.Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Challenge.DifficultyLevel" class="control-label"></label>
-                <select asp-for="Challenge.DifficultyLevelId" asp-items="@Model.DifficultyLevels" class="form-select" title="Torleikastig"></select>
-                <span asp-validation-for="Challenge.DifficultyLevel" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Challenge.IsOpenForAll" /> @Html.DisplayNameFor(model => model.Challenge.IsOpenForAll)
-                </label>
-            </div>
-
-        </div>
-    </div>
-        <legend>@Html.DisplayNameFor(c => c.Challenge.Options)</legend>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group" id="option0">
-                <div class="alert alert-dismissible alert-light option" id="option0" data-optionid="0">
-                   
-                    <input asp-for="Challenge.Options[0]" class="form-control" />
-                    <span asp-validation-for="Challenge.Options[0]" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Challenge.Name" class="control-label"></label>
+                    <input asp-for="Challenge.Name" class="form-control" />
+                    <span asp-validation-for="Challenge.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Challenge.Text" class="control-label"></label>
+                    <input asp-for="Challenge.Text" class="form-control" />
+                    <span asp-validation-for="Challenge.Text" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Challenge.Description" class="control-label"></label>
+                    <input asp-for="Challenge.Description" class="form-control" />
+                    <span asp-validation-for="Challenge.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Challenge.Question" class="control-label"></label>
+                    <input asp-for="Challenge.Question" class="form-control" />
+                    <span asp-validation-for="Challenge.Question" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Challenge.OrderInSequence" class="control-label"></label>
+                    <input asp-for="Challenge.OrderInSequence" class="form-control" />
+                    <span asp-validation-for="Challenge.OrderInSequence" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Challenge.Type" class="control-label"></label>
+                    <select asp-for="Challenge.TypeId" asp-items="@Model.Types" class="form-select" title="Slag"></select>
+                    <span asp-validation-for="Challenge.Type" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Challenge.DifficultyLevel" class="control-label"></label>
+                    <select asp-for="Challenge.DifficultyLevelId" asp-items="@Model.DifficultyLevels" class="form-select" title="Torleikastig"></select>
+                    <span asp-validation-for="Challenge.DifficultyLevel" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Challenge.IsOpenForAll" /> @Html.DisplayNameFor(model => model.Challenge.IsOpenForAll)
+                    </label>
                 </div>
 
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="alert alert-dismissible alert-light option" id="option1" data-optionid="1">
-
-                    <input asp-for="Challenge.Options[1]" class="form-control" />
-                    <span asp-validation-for="Challenge.Options[1]" class="text-danger"></span>
-                </div>
-            </div>
+        <div class="row">
+            @Html.EditorFor(model => model.Challenge, "Options")
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="alert alert-dismissible alert-light option" id="option2" data-optionid="2">
-
-                    <input asp-for="Challenge.Options[2]" class="form-control" />
-                    <span asp-validation-for="Challenge.Options[2]" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="alert alert-dismissible alert-light option" id="option3" data-optionid="3">
-
-                    <input asp-for="Challenge.Options[3]" class="form-control" />
-                    <span asp-validation-for="Challenge.Options[3]" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-
-        
 
         <div class="form-group">
             <input type="submit" value="Goym" class="btn btn-primary" />
         </div>
 
-</div>
     </fieldset>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Aftur</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 
-    <script src="~/js/Challenge.js" asp-append-version="true"></script>
+    <script src="~/js/Challenges.js" asp-append-version="true"></script>
 }

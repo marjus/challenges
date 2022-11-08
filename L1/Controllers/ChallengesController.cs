@@ -207,6 +207,11 @@ namespace L1.Controllers
         {
             var vm = new EditChallenge();
 
+            for(var i = 0; i < 4; i++)
+            {
+                vm.Challenge.Options.Add(new ChallengeOption { Id = i });
+            }
+
             return View(vm);
         }
 
@@ -215,10 +220,15 @@ namespace L1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderInSequence,Name,Text,Description,Question,TypeId,DifficultyLevelId,IsOpenForAll,CorrectOptionId,Options")] Challenge challenge)
+        public async Task<IActionResult> Create( Challenge challenge)
         {
             if (ModelState.IsValid)
             {
+                var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+                
+                challenge.Options.Clear();
+                challenge.Options.AddRange(options);
+
                 _context.Add(challenge);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -234,12 +244,13 @@ namespace L1.Controllers
                 return NotFound();
             }
 
-            var challenge = await _context.Challenges.FindAsync(id);
-            if (challenge == null)
+            var challenge = await _context.Challenges.Include(c => c.Options).SingleOrDefaultAsync(c => c.Id == id);
+
+            if (challenge == null || challenge.Options == null)
             {
                 return NotFound();
             }
-            
+
             var vm = new EditChallenge();
 
             vm.Id = id.Value;
@@ -253,7 +264,7 @@ namespace L1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,OrderInSequence,Name,Text,Description,Question,TypeId,DifficultyLevelId,IsOpenForAll,CorrectOptionId,Options")] Challenge challenge)
+        public async Task<IActionResult> Edit(int id, Challenge challenge)
         {
             if (id != challenge.Id)
             {

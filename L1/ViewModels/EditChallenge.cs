@@ -1,5 +1,6 @@
 ﻿using L1.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Packaging;
 
 namespace L1.ViewModels;
 
@@ -16,13 +17,15 @@ public class EditChallenge
     public EditChallenge()
     {
         DifficultyLevels = new List<SelectListItem>();
-        DifficultyLevels.Add(new SelectListItem { Text = "Lætt", Value = "1" });
-        DifficultyLevels.Add(new SelectListItem { Text = "Miðal", Value = "2" });
-        DifficultyLevels.Add(new SelectListItem { Text = "Torført", Value = "3" });
-
         Types = new List<SelectListItem>();
-        Types.Add(new SelectListItem { Text = "Tala", Value = "1" });
-        Types.Add(new SelectListItem { Text = "Lestur", Value = "2" });
-        Types.Add(new SelectListItem { Text = "Skilja", Value = "3" });
+
+        var difficultyLevelItems = Enum.GetValues(typeof(ChallengeDifficultyLevel)).Cast<ChallengeDifficultyLevel>().Select(d => new SelectListItem { Text = d.ToString(), Value = ((int)d).ToString() }).ToList();
+        DifficultyLevels.AddRange(difficultyLevelItems);
+
+        var typesOfChallenge = Enum.GetValues(typeof(ChallengeType)).Cast<ChallengeType>().Select(d => new SelectListItem { Text = d.ToString(), Value = ((int)d).ToString() }).ToList();
+        Types.AddRange(typesOfChallenge);
+
+        Challenge= new Challenge();
+        Challenge.Options = new List<ChallengeOption>();
     }
 }
