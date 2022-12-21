@@ -3,20 +3,20 @@ import { defineStore } from 'pinia'
 // Import axios to make HTTP requests
 import axios from "axios"
 
-export const useRecipeStore = defineStore("recipe",{
+export const useChallengeStore = defineStore("challenge",{
     state: () => ({
-        recipes: [],
+        challengeData: {},
     }),
     getters: {
-        getRecipes(state){
-            return state.recipes
+        getChallenges(state){
+            return state.challengeData.Challenges
           }
     },
     actions: {
-        async fetchRecipes() {
+        async fetchChallenges() {
             try {
-              const data = await axios.get('https://rcpttest.azurewebsites.net/api/recipes/get')
-                this.recipes = JSON.parse(data.data)
+              const data = await axios.get('https://learnchallengetest1.azurewebsites.net/Challenges/GetAllChallenges')
+                this.challengeData = data
               }
               catch (error) {
                 alert(error)

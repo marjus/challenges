@@ -158,6 +158,16 @@ namespace L1.Controllers
             return JsonSerializer.Serialize(challenges, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
         }
 
+        public string GetChallengeList()
+        {
+            var userChallenges = _context.Challenges
+                .Include(c=> c.Options)
+                .OrderBy(c => c.OrderInSequence)
+                .ToList();
+
+            return JsonSerializer.Serialize(userChallenges, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
+        }
+
         public string GetChallengesForUserProfile(UserProfile profile)
         {
             var userChallenges = _context.Challenges
