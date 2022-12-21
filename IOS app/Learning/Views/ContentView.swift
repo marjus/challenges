@@ -48,7 +48,7 @@ struct ContentView: View {
                             Text(option.content)
                                 .font(.largeTitle)
                                 .cardify(isFaceUp: true)
-                                .aspectRatio(1, contentMode: .fit)
+                                .aspectRatio(1.7, contentMode: .fit)
                         }
                     }
                 }
