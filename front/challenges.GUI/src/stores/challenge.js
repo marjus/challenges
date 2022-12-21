@@ -5,18 +5,18 @@ import axios from "axios"
 
 export const useChallengeStore = defineStore("challenge",{
     state: () => ({
-        challengeData: {},
+        challenges: [],
     }),
     getters: {
         getChallenges(state){
-            return state.challengeData.Challenges
+            return state.challenges
           }
     },
     actions: {
         async fetchChallenges() {
             try {
-              const data = await axios.get('https://learnchallengetest1.azurewebsites.net/Challenges/GetAllChallenges')
-                this.challengeData = data
+              const data = await axios.get('https://learnchallengetest1.azurewebsites.net/Challenges/GetChallengeList')
+                this.challenges = data.data
               }
               catch (error) {
                 alert(error)

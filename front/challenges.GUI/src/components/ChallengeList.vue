@@ -1,16 +1,17 @@
 <template>
     <h1>Uppgávur</h1>
     <div class="row">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Nummar</th>
                     <th>Navn</th>
                     <th>Spurningur</th>
                     <th>Tekstur</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody v-for="(challenge, index) in challengeStore.challengeData.Challenges" :key="index">
+            <tbody v-for="(challenge, index) in challengeStore.challenges" :key="index">
                 <tr>
                     <td>
                         {{ challenge.OrderInSequence }}
@@ -23,6 +24,15 @@
                     </td>
                     <td>
                         {{ challenge.Text }}
+                    </td>
+                    <td>
+                        <button class="btn btn-link" @click="displayChallenge(challenge)">
+                            <i class="fa fa-utensils"></i>Vís
+                        </button>
+                        <button class="btn btn-link" @click="editChallenge(challenge)"> 
+                            <i class="fa fa-utensils"></i> Broyt
+                        </button>
+                        <button class="btn btn-link">Strika</button>
                     </td>
                 </tr>
             </tbody>
