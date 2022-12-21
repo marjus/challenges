@@ -144,6 +144,7 @@ namespace L1.Controllers
         public string GetAllChallenges()
         {
             var userChallenges = _context.Challenges
+                .Include(c=> c.Options)
                 .OrderBy(c => c.OrderInSequence)
                 .ToList();
 
