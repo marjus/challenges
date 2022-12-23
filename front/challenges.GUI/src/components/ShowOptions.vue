@@ -1,21 +1,39 @@
-<template>
-    <div class="options">
-        <div class="row">
-            <div class="col-md-6">
-                {{ options[0]. }}
+<template>  
+<div class="row">
+    <div class="options" v-for="option in challengeStore.activeChallenge.Options" :key="option.id">
+        <div class="col-md-6">
+        <div class="form-group" @click="selectOption(option)" v-if="challengeStore.editMode">
+            <div class="alert alert-dismissible border option" :class="{ 'alert-success': option.IsCorrect, 'alert-light': !option.IsCorrect  }">
+                <input class="form-control" title="Valmøguleiki" placeholder="Valmøguleiki" v-model="option.Content">
+                <label v-if="option.IsCorrect" class="form-check-label">R&#xE6;tt svar</label>
+            </div>
+        </div>
+        <div v-else>
+            <div class="alert alert-dismissible border option" :class="{ 'alert-success': option.IsCorrect, 'alert-light': !option.IsCorrect  }">
+                <h6>
+                    {{ option.Content }}
+                </h6>
+                <label v-if="option.IsCorrect" class="form-check-label">R&#xE6;tt svar</label>
             </div>
         </div>
     </div>
+    </div>
+</div>
 </template>
 
 <script setup>
-  //  import { useChallengeStore } from "@/stores/challenge";
+    import { useChallengeStore } from "@/stores/challenge";
 
-    const props = defineProps({       
-        options: []
-    })
+    const challengeStore = useChallengeStore();
+
+    const selectOption = (o) => {  challengeStore.setCorrectOption(o) };  
 </script>
 
 <style scoped>
-    
+    .options{
+        width: 100%;
+    }
+    .option{
+        margin: 10px;
+    }
 </style>

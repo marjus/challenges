@@ -1,6 +1,7 @@
 <template>
     <h1>Uppgávur</h1>
     <div class="row">
+        <div class="col">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -27,7 +28,7 @@
                     </td>
                     <td>
                         <button class="btn btn-link" @click="displayChallenge(challenge)">
-                            <i class="fa fa-utensils"></i>Vís
+                            <i class="bi bi-zoom-in"></i> Vís
                         </button>
                         <button class="btn btn-link" @click="editChallenge(challenge)"> 
                             <i class="fa fa-utensils"></i> Broyt
@@ -38,13 +39,28 @@
             </tbody>
         </table>
     </div>
+    <div class="col">
+        <ShowChallenge></ShowChallenge>
+    </div>
+    </div>
 </template>
 
 <script setup>
     import { ref, onMounted, computed } from "vue";
     import { useChallengeStore } from "@/stores/challenge";
+import ShowChallenge from "./ShowChallenge.vue";
 
     const challengeStore = useChallengeStore();
+
+    const displayChallenge = (challenge) => {
+        challengeStore.setActive(challenge);
+        challengeStore.editMode = false;
+    };
+
+    const editChallenge = (challenge) => {
+        challengeStore.setActive(challenge);
+        challengeStore.editMode = true;
+    };
 
     onMounted(() => {
         challengeStore.fetchChallenges();

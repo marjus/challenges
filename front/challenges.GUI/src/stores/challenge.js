@@ -6,6 +6,8 @@ import axios from "axios"
 export const useChallengeStore = defineStore("challenge",{
     state: () => ({
         challenges: [],
+        activeChallenge: {},
+        editMode: false
     }),
     getters: {
         getChallenges(state){
@@ -22,6 +24,21 @@ export const useChallengeStore = defineStore("challenge",{
                 alert(error)
                 console.log(error)
             }
+        },
+        async setActive(challenge){
+            this.activeChallenge = challenge
+        },
+        async setCorrectOption(option){
+            
+            this.activeChallenge.Options.foreach(o=> o.IsCorrect = false);
+
+            var correct = this.activeChallenge.Options.find((opt) => opt.Id === option.Id);
+            if(correct){
+                correct.IsCorrect = true;
+            }
         }
+        // async deleteChallenge(challenge){
+        //     this.challenges.push(recipe);
+        // }
     },
 })
