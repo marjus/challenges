@@ -1,5 +1,5 @@
 <template >
-    
+    <div class="container">
     <div class="border challenge" v-if="challengeStore.editMode">
         <h6>Nummar</h6>
         <input v-model="challengeStore.activeChallenge.OrderInSequence">
@@ -11,6 +11,7 @@
         <input v-model="challengeStore.activeChallenge.Text">
         <br/><br/>
         <ShowOptions></ShowOptions>
+        <button class="btn btn-success" @click="saveChallenge()">Goym</button>
     </div>
     <div v-else class="border challenge">
         <h3 class="challengeName">{{ challengeStore.activeChallenge.Name }}</h3>
@@ -19,6 +20,7 @@
         <br/><br/>
         <ShowOptions></ShowOptions>
     </div>
+</div>
 </template>
 
 <script setup>
@@ -27,6 +29,10 @@
 
     const challengeStore = useChallengeStore();
 
+    const saveChallenge = () => {
+        challengeStore.saveChallenge();
+        challengeStore.editMode = false;
+    };
 </script>
 <style scoped>
     .challenge{

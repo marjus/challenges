@@ -25,6 +25,18 @@ export const useChallengeStore = defineStore("challenge",{
                 console.log(error)
             }
         },
+        async saveChallenge() {
+            try {
+                alert("putting " + this.activeChallenge.Id);
+                // await axios.put('https://learnchallengetest1.azurewebsites.net/Challenges/' + this.activeChallenge.Id, {
+                //     this.activeChallenge.
+                // })
+            }
+            catch(error) {
+                alert(error)
+                console.log(error)
+            }
+        }
         async setActive(challenge){
             this.activeChallenge = challenge
         },
