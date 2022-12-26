@@ -7,6 +7,7 @@ export const useChallengeStore = defineStore("challenge",{
     state: () => ({
         challenges: [],
         activeChallenge: {},
+        activeChallengeIndex: Number,
         editMode: false,
         runMode: false
     }),
@@ -27,8 +28,16 @@ export const useChallengeStore = defineStore("challenge",{
             }
         },
         async loadRandom() {
-            if(this.challenges && this.challenges.length > 0)
-                this.activeChallenge = this.challenges[0];
+            if(this.challenges && this.challenges.length > 0){
+                this.activeChallengeIndex = 0;
+                this.activeChallenge = this.challenges[this.activeChallengeIndex];
+            }
+        },
+        async loadNext() {
+            if(this.challenges && this.challenges.length > this.activeChallengeIndex +1){
+                this.activeChallengeIndex += 1;
+                this.activeChallenge = this.challenges[this.activeChallengeIndex];
+            }
         },
         async saveChallenge() {
             try {

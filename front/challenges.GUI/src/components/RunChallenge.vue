@@ -9,6 +9,9 @@
                 <br/><br/>
                 <RunOptions></RunOptions>
             </div>
+            <div class="border control">
+                <button @click="nextChallenge()" class="btn btn-success"><i class="bi bi-caret-right"></i> Næsta</button>
+            </div>
         </div>
     </div>
 </template>
@@ -25,6 +28,10 @@
         challengeStore.editMode = false;
     };
 
+    const nextChallenge = () => {
+        challengeStore.loadNext();
+    };
+
     onMounted(() => {
         challengeStore.fetchChallenges();
         challengeStore.loadRandom();
@@ -39,7 +46,12 @@
         margin: 0 auto;
         padding: 15px;
     }
-
+    .control{
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px;
+        text-align: right;
+    }
     .challengeName {
         text-align: left;
     }

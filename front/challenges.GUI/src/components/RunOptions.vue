@@ -3,7 +3,7 @@
     <div class="row row-cols-2">
         <div class="col" v-for="option in challengeStore.activeChallenge.Options" :key="option.id">  
             <div>
-                <RunOption :option="option" :isCorrect="option.IsCorrect"></RunOption>
+                <RunOption :option="option" isSelected="false" ></RunOption>
             </div>
         </div>
     </div>
@@ -21,14 +21,14 @@
         challengeStore.setCorrectOption(option) 
     };  
 
-    const optionClicked = (option) => { 
-        // isCorrect = option.isCorrect;
-        // isFalse = option.isFalse;
-        // if (option.IsCorrect)
-        //     alert("correct");
-        // else
-        //     alert("incorrect");
-    }; 
+    // const optionClicked = (option) => { 
+    //     // isCorrect = option.isCorrect;
+    //     // isFalse = option.isFalse;
+    //     // if (option.IsCorrect)
+    //     //     alert("correct");
+    //     // else
+    //     //     alert("incorrect");
+    // }; 
 
     const classCorrect = {
       'alert-success': false,
