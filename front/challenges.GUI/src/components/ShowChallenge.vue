@@ -14,8 +14,8 @@
             <button class="btn btn-success" @click="saveChallenge()">Goym</button>
         </div>
         <div v-else class="border challenge">
-            <h3 class="challengeName">{{ challengeStore.activeChallenge.Name }}</h3>
-            <h5 class="challengeText">{{ challengeStore.activeChallenge.Text }}</h5>
+            <h5 class="challengeName">{{ challengeStore.activeChallenge.Name }}</h5>
+            <h2 class="challengeText">{{ challengeStore.activeChallenge.Text }}</h2>
             <h5 class="challengeQuestion">{{ challengeStore.activeChallenge.Question }}</h5>
             <br/><br/>
             <ShowOptions></ShowOptions>
@@ -43,6 +43,12 @@
 
     .challengeName {
         text-align: left;
+    }
+
+    .challengeText{
+        text-align: center;
+        margin-top: 45px;
+        margin-bottom: 5px;
     }
 
     .challengeQuestion{
