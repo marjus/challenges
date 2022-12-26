@@ -1,5 +1,6 @@
 <template>
     <h1>Uppgávur</h1>
+    <button @click="newChallenge()" class="btn btn-success"><i class="bi bi-plus-circle-dotted"></i> Nýggja uppgávu</button>
     <div class="row">
         <div class="col">
         <table class="table table-striped table-hover">
@@ -31,9 +32,9 @@
                             <i class="bi bi-zoom-in"></i> Vís
                         </button>
                         <button class="btn btn-link" @click="editChallenge(challenge)"> 
-                            <i class="fa fa-utensils"></i> Broyt
+                            <i class="bi bi-pencil"></i> Broyt
                         </button>
-                        <button class="btn btn-link">Strika</button>
+                        <button class="btn btn-link"><i class="bi bi-x-circle"></i> Strika</button>
                     </td>
                 </tr>
             </tbody>
@@ -62,8 +63,15 @@ import ShowChallenge from "./ShowChallenge.vue";
         challengeStore.editMode = true;
     };
 
+    const newChallenge = () => {
+        challengeStore.setActive({});
+        challengeStore.editMode = true;
+    }
+
     onMounted(() => {
         challengeStore.fetchChallenges();
+        challengeStore.loadRandom();
+        challengeStore.runMode = false;
     });
 
 </script>

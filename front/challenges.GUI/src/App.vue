@@ -3,7 +3,8 @@
     <div class="wrapper">
 
       <nav>
-        <RouterLink to="/challenges">Uppgávur</RouterLink>
+        <RouterLink to="/challenges">Umsiting</RouterLink>
+        <RouterLink to="/run">Royn uppgávur</RouterLink>
       </nav>
     </div>
   </header>
@@ -13,7 +14,8 @@
 </template>
 
 <script setup>
-  import { RouterLink, RouterView } from "vue-router";
+    import { RouterLink, RouterView } from "vue-router";
+   
 </script>
 
 <style scoped>

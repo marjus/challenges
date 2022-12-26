@@ -7,7 +7,8 @@ export const useChallengeStore = defineStore("challenge",{
     state: () => ({
         challenges: [],
         activeChallenge: {},
-        editMode: false
+        editMode: false,
+        runMode: false
     }),
     getters: {
         getChallenges(state){
@@ -25,6 +26,10 @@ export const useChallengeStore = defineStore("challenge",{
                 console.log(error)
             }
         },
+        async loadRandom() {
+            if(this.challenges && this.challenges.length > 0)
+                this.activeChallenge = this.challenges[0];
+        },
         async saveChallenge() {
             try {
                 alert("putting " + this.activeChallenge.Id);
@@ -36,7 +41,7 @@ export const useChallengeStore = defineStore("challenge",{
                 alert(error)
                 console.log(error)
             }
-        }
+        },
         async setActive(challenge){
             this.activeChallenge = challenge
         },
