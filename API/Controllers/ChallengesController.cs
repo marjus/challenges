@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using System.Text.Json;
 
 namespace API.Controllers
 {
@@ -29,7 +30,7 @@ namespace API.Controllers
           {
               return NotFound();
           }
-            return await _context.Challenges.ToListAsync();
+            return await _context.Challenges.Include(c=> c.Options).OrderBy(c => c.OrderInSequence).ToListAsync();
         }
 
         // GET: api/Challenges/5
