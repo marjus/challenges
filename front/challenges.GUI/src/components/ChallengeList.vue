@@ -1,6 +1,10 @@
 <template>
-    <h1>Uppgávur</h1>
-    <button @click="newChallenge()" class="btn btn-success"><i class="bi bi-plus-circle-dotted"></i> Nýggja uppgávu</button>
+    <div class="row">
+        <div class="col">
+        <h1 class="float-start">Uppgávur</h1></div><div class="col">
+        <button @click="newChallenge()" class="btn btn-success float-end"><i class="bi bi-plus-circle-dotted"></i> Nýggja uppgávu</button>
+    </div>
+    </div>
     <div class="row">
         <div class="col-8">
         <table class="table table-striped table-hover">
@@ -16,19 +20,19 @@
             <tbody v-for="(challenge, index) in challengeStore.challenges" :key="index">
                 <tr @click="displayChallenge(challenge)">
                     <td>
-                        {{ challenge.OrderInSequence }}
+                        {{ challenge.orderInSequence }}
                     </td>
                     <td>
-                        {{ challenge.Name }}
+                        {{ challenge.name }}
                     </td>
                     <td>
-                        {{ challenge.Question }}
+                        {{ challenge.question }}
                     </td>
                     <td>
-                        {{ challenge.Text }}
+                        {{ challenge.text }}
                     </td>
                     <td nowrap>
-                        <button class="btn btn-link" @click="editChallenge(challenge)"> 
+                        <button class="btn btn-link" @click.stop="editChallenge(challenge)"> 
                             <i class="bi bi-pencil"></i> Broyt
                         </button>
                         <button class="btn btn-link"><i class="bi bi-x-circle"></i> Strika</button>
@@ -53,16 +57,18 @@ import ShowChallenge from "./ShowChallenge.vue";
     const displayChallenge = (challenge) => {
         challengeStore.setActive(challenge);
         challengeStore.editMode = false;
+        
     };
 
     const editChallenge = (challenge) => {
         challengeStore.setActive(challenge);
         challengeStore.editMode = true;
+        
     };
 
     const newChallenge = () => {
         challengeStore.setActive({});
-        challengeStore.editMode = true;
+        challengeStore.editMode = true; 
     }
 
     onMounted(() => {

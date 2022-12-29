@@ -1,17 +1,17 @@
 <template>  
 
     <div class="row row-cols-2">
-        <div class="col" v-for="option in challengeStore.activeChallenge.Options" :key="option.id">  
+        <div class="col" v-for="option in challengeStore.activeChallenge.options" :key="option.id">  
             <div class="form-group" @click="selectOption(option)" v-if="challengeStore.editMode">
-                <div class="alert alert-dismissible border option" :class="{ 'alert-success': option.IsCorrect, 'alert-light': !option.IsCorrect  }">
-                    <input class="form-control" title="Valmøguleiki" placeholder="Valmøguleiki" v-model="option.Content">
-                    <label v-if="option.IsCorrect" class="form-check-label">R&#xE6;tt svar</label>
+                <div class="alert alert-dismissible border option" :class="{ 'alert-success': option.isCorrect, 'alert-light': !option.isCorrect  }">
+                    <input class="form-control" title="Valmøguleiki" placeholder="Valmøguleiki" v-model="option.content">
+                    
                 </div>
             </div>
             <div v-else>
-                <div  class="alert alert-dismissible border option" :class="{ 'alert-success': option.IsCorrect, 'alert-light': !option.IsCorrect  }">
+                <div  class="alert alert-dismissible border option" :class="{ 'alert-success': option.IsCorrect, 'alert-light': !option.isCorrect  }">
                     <h6>
-                        {{ option.Content }}
+                        {{ option.content }}
                     </h6>
                 </div>
             </div>
@@ -33,8 +33,9 @@
     .options{
         width: 100%;
     }
-    /* .option{
+    .option{
         margin: 10px; 
+        text-align: center;
     }
-    */
+    
 </style>

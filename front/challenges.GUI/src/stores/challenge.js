@@ -9,7 +9,8 @@ export const useChallengeStore = defineStore("challenge",{
         activeChallenge: {},
         activeChallengeIndex: Number,
         editMode: false,
-        runMode: false
+        runMode: false,
+        mode: "show"
     }),
     getters: {
         getChallenges(state){
@@ -19,7 +20,7 @@ export const useChallengeStore = defineStore("challenge",{
     actions: {
         async fetchChallenges() {
             try {
-              const data = await axios.get('https://learnchallengetest1.azurewebsites.net/Challenges/GetChallengeList')
+              const data = await axios.get('https://learnchallengeapi.azurewebsites.net/api/challenges')
                 this.challenges = data.data
               }
               catch (error) {
@@ -39,12 +40,14 @@ export const useChallengeStore = defineStore("challenge",{
                 this.activeChallenge = this.challenges[this.activeChallengeIndex];
             }
         },
-        async saveChallenge() {
+        async saveChallenge(challenge) {
             try {
-                alert("putting " + this.activeChallenge.Id);
-                // await axios.put('https://learnchallengetest1.azurewebsites.net/Challenges/' + this.activeChallenge.Id, {
-                //     this.activeChallenge.
-                // })
+                if(challenge.id && challenge.id>0){
+                    const res = await axios.put('https://learnchallengeapi.azurewebsites.net/api/challenges/' + challenge.id,  challenge);
+                }
+                else{
+                    const res = await axios.post('https://learnchallengeapi.azurewebsites.net/api/challenges/',  challenge);
+                }
             }
             catch(error) {
                 alert(error)
@@ -56,11 +59,11 @@ export const useChallengeStore = defineStore("challenge",{
         },
         async setCorrectOption(option){
             
-            this.activeChallenge.Options.foreach(o=> o.IsCorrect = false);
+            this.activeChallenge.options.foreach(o=> o.isCorrect = false);
 
-            var correct = this.activeChallenge.Options.find((opt) => opt.Id === option.Id);
+            var correct = this.activeChallenge.options.find((opt) => opt.id === option.id);
             if(correct){
-                correct.IsCorrect = true;
+                correct.isCorrect = true;
             }
         }
         // async deleteChallenge(challenge){

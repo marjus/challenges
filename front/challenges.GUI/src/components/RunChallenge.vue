@@ -3,9 +3,9 @@
     <div class="row">      
         <div class="col">
             <div class="border challenge">
-                <h5 class="challengeName">{{ challengeStore.activeChallenge.Name }}</h5>
-                <h2 class="challengeText">{{ challengeStore.activeChallenge.Text }}</h2>
-                <h5 class="challengeQuestion">{{ challengeStore.activeChallenge.Question }}</h5>
+                <h5 class="challengeName">{{ challengeStore.activeChallenge.name }}</h5>
+                <h2 class="challengeText">{{ challengeStore.activeChallenge.text }}</h2>
+                <h5 class="challengeQuestion">{{ challengeStore.activeChallenge.question }}</h5>
                 <br/><br/>
                 <RunOptions></RunOptions>
             </div>
@@ -36,6 +36,7 @@
         challengeStore.fetchChallenges();
         challengeStore.loadRandom();
         challengeStore.runMode = true;
+        
     });
 
 </script>

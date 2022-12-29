@@ -1,7 +1,7 @@
 <template>  
 
     <div class="row row-cols-2">
-        <div class="col" v-for="option in challengeStore.activeChallenge.Options" :key="option.id">  
+        <div class="col" v-for="option in challengeStore.activeChallenge.options" :key="option.id">  
             <div>
                 <RunOption :option="option" isSelected="false" ></RunOption>
             </div>
