@@ -7,8 +7,10 @@ namespace API.Models
     {
         public int Id { get; set; }
 
+        [Display(Name ="Valmøguleiki")]
         public string? Content { get; set; }
 
+        [Display(Name = "Rætt svar")]
         public bool IsCorrect { get; set; }
     }
 }

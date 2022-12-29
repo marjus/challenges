@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Web app LearnChallengeTest1
+name: API LearnChallengeAPI
 
 on:
   push:
@@ -19,14 +19,14 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.x'
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build ./L1/L1.csproj --configuration Release
+        run: dotnet build ./API/API.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./L1/L1.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ./API/API.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'LearnChallengeTest1'
+          app-name: 'LearnChallengeAPI'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_815F6ADF2D564A7BABCB5A5343189A29 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_295AB208FD584CAA88F8A60BC9D08293 }}
           package: .
