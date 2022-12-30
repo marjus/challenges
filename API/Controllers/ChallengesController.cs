@@ -61,6 +61,11 @@ namespace API.Controllers
                 return BadRequest();
             }
 
+            var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+                
+            challenge.Options.Clear();
+            challenge.Options.AddRange(options);
+            
             _context.Entry(challenge).State = EntityState.Modified;
 
             try
@@ -91,6 +96,11 @@ namespace API.Controllers
           {
               return Problem("Entity set 'ApplicationDbContext.Challenges'  is null.");
           }
+                          var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+                
+                challenge.Options.Clear();
+                challenge.Options.AddRange(options);
+
             _context.Challenges.Add(challenge);
             await _context.SaveChangesAsync();
 
