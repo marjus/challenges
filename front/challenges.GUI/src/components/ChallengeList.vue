@@ -10,7 +10,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Nummar</th>
+                    <th scope="row">Nummar</th>
                     <th>Navn</th>
                     <th>Spurningur</th>
                     <th>Tekstur</th>
@@ -35,7 +35,7 @@
                         <button class="btn btn-link" @click.stop="editChallenge(challenge)"> 
                             <i class="bi bi-pencil"></i> Broyt
                         </button>
-                        <button class="btn btn-link" @click.stop="deleteChallenge(challenge)"><i class="bi bi-x-circle"></i> Strika</button>
+                        <!-- <button class="btn btn-link" @click.stop="deleteChallenge(challenge)"><i class="bi bi-x-circle"></i> Strika</button> -->
                     </td>
                 </tr>
             </tbody>
