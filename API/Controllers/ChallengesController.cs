@@ -111,6 +111,8 @@ namespace API.Controllers
                 return NotFound();
             }
 
+            _context.Options.RemoveRange(challenge.Options);
+
             _context.Challenges.Remove(challenge);
             await _context.SaveChangesAsync();
 

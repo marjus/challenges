@@ -11,6 +11,6 @@ namespace API.Data
         }
 
         public DbSet<Challenge> Challenges { get; set; }
-
+        public DbSet<ChallengeOption> Options { get; set; }
     }
 }
