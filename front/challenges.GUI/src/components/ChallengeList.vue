@@ -35,7 +35,7 @@
                         <button class="btn btn-link" @click.stop="editChallenge(challenge)"> 
                             <i class="bi bi-pencil"></i> Broyt
                         </button>
-                        <button class="btn btn-link"><i class="bi bi-x-circle"></i> Strika</button>
+                        <button class="btn btn-link" @click.stop="deleteChallenge(challenge)"><i class="bi bi-x-circle"></i> Strika</button>
                     </td>
                 </tr>
             </tbody>
@@ -67,8 +67,11 @@ import ShowChallenge from "./ShowChallenge.vue";
     };
 
     const newChallenge = () => {
-        challengeStore.setActive({});
-        challengeStore.editMode = true; 
+        challengeStore.newEmpty();
+    }
+
+    const deleteChallenge = (challenge) => {
+        challengeStore.deleteChallenge(challenge);
     }
 
     onMounted(() => {

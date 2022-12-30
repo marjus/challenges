@@ -9,8 +9,7 @@ export const useChallengeStore = defineStore("challenge",{
         activeChallenge: {},
         activeChallengeIndex: Number,
         editMode: false,
-        runMode: false,
-        mode: "show"
+        runMode: false
     }),
     getters: {
         getChallenges(state){
@@ -40,6 +39,17 @@ export const useChallengeStore = defineStore("challenge",{
                 this.activeChallenge = this.challenges[this.activeChallengeIndex];
             }
         },
+        async deleteChallenge(challenge){
+            try {
+                if(challenge.id && challenge.id>0){
+                    const res = await axios.delete('https://learnchallengeapi.azurewebsites.net/api/challenges/' + challenge.id);
+                }
+            }
+            catch(error) {
+                alert(error)
+                console.log(error)
+            }
+        },
         async saveChallenge(challenge) {
             try {
                 if(challenge.id && challenge.id>0){
@@ -56,6 +66,12 @@ export const useChallengeStore = defineStore("challenge",{
         },
         async setActive(challenge){
             this.activeChallenge = challenge
+        },
+        async newEmpty(){
+            const newChallenge = {options: [{},{},{},{}] };
+
+            this.setActive(newChallenge);
+            this.editMode = true; 
         },
         async setCorrectOption(option){
             
