@@ -1,6 +1,7 @@
 <template>  
 
     <div class="row row-cols-2">
+
         <div class="col" v-for="option in challengeStore.activeChallenge.options" :key="option.id">  
             <div class="form-group" @click="selectOption(option)" v-if="challengeStore.editMode">
                 <div class="alert alert-dismissible border option" :class="{ 'alert-success': option.isCorrect, 'alert-light': !option.isCorrect  }">
