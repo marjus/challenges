@@ -13,7 +13,6 @@ namespace API.Models
         [Display(Name = "Rætt svar")]
         public bool IsCorrect { get; set; }
 
-        // public int ChallengeId { get; set; }
-        // public Challenge Challenge { get; set; }
+     //   public  Challenge Challenge { get; set; }
     }
 }

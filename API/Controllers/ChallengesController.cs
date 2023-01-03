@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
 using System.Text.Json;
+using API.APIModels;
 
 namespace API.Controllers
 {
@@ -26,21 +27,33 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Challenge>>> GetChallenges()
         {
-          if (_context.Challenges == null)
-          {
-              return NotFound();
-          }
-            return await _context.Challenges.Include(c=> c.Options).OrderBy(c => c.OrderInSequence).ToListAsync();
+            if (_context.Challenges == null)
+            {
+                return NotFound();
+            }
+            return await _context.Challenges
+                .Include(c => c.Options)
+                .OrderBy(c => c.OrderInSequence)
+                //.Select(c=> new ChallengeAM { 
+                //    Id = c.Id, 
+                //    Name = c.Name, 
+                //    Description = c.Description, 
+                //    Text = c.Text, 
+                //    Question = c.Question, 
+                //    OrderInSequence = c.OrderInSequence, 
+                //    Options = c.Options.Select(o=> new ChallengeOptionAM { Id = o.Id, Content = o.Content, IsCorrect = o.IsCorrect}).ToList()
+                // })
+                .ToListAsync();
         }
 
         // GET: api/Challenges/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Challenge>> GetChallenge(int id)
         {
-          if (_context.Challenges == null)
-          {
-              return NotFound();
-          }
+            if (_context.Challenges == null)
+            {
+                return NotFound();
+            }
             var challenge = await _context.Challenges.FindAsync(id);
 
             if (challenge == null)
@@ -62,10 +75,10 @@ namespace API.Controllers
             }
 
             var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
-                
+
             challenge.Options.Clear();
             challenge.Options.AddRange(options);
-            
+
             _context.Entry(challenge).State = EntityState.Modified;
 
             try
@@ -92,14 +105,15 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Challenge>> PostChallenge(Challenge challenge)
         {
-          if (_context.Challenges == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Challenges'  is null.");
-          }
-                          var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+            if (_context.Challenges == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Challenges'  is null.");
                 
-                challenge.Options.Clear();
-                challenge.Options.AddRange(options);
+            }
+            var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+
+            challenge.Options.Clear();
+            challenge.Options.AddRange(options);
 
             _context.Challenges.Add(challenge);
             await _context.SaveChangesAsync();
@@ -121,7 +135,7 @@ namespace API.Controllers
                 return NotFound();
             }
 
-        //    _context.Options.RemoveRange(challenge.Options);
+            //    _context.Options.RemoveRange(challenge.Options);
 
             _context.Challenges.Remove(challenge);
             await _context.SaveChangesAsync();
