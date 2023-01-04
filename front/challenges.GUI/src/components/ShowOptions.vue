@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div v-else>
-                <div  class="alert alert-dismissible border option" :class="{ 'alert-success': option.IsCorrect, 'alert-light': !option.isCorrect  }">
+                <div  class="alert alert-dismissible border option" :class="{ 'alert-success': option.isCorrect, 'alert-light': !option.isCorrect  }">
                     <h4>
                         {{ option.content }}
                     </h4>
