@@ -67,19 +67,23 @@ namespace API.Controllers
         // PUT: api/Challenges/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutChallenge(int id, Challenge challenge)
+        public async Task<IActionResult> PutChallenge(int id, ChallengeAM challenge)
         {
             if (id != challenge.Id)
             {
                 return BadRequest();
             }
 
-            var options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
+            var savedChallenge = await _context.Challenges.Include(c => c.Options).FirstOrDefaultAsync(c => c.Id == id);
 
-            challenge.Options.Clear();
-            challenge.Options.AddRange(options);
+            savedChallenge.OrderInSequence = challenge.OrderInSequence;
+            savedChallenge.Name= challenge.Name;
+            savedChallenge.Text= challenge.Text;
+            savedChallenge.Description= challenge.Description;
+            savedChallenge.Question= challenge.Question;
 
-            _context.Entry(challenge).State = EntityState.Modified;
+            savedChallenge.Options.Clear();
+            savedChallenge.Options = challenge.Options.Select(o => new ChallengeOption { Content = o.Content, IsCorrect = o.IsCorrect }).ToList();
 
             try
             {
@@ -129,14 +133,15 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            var challenge = await _context.Challenges.FindAsync(id);
+            var challenge = await _context.Challenges.Include(c => c.Options).FirstOrDefaultAsync(c => c.Id == id);
+            
             if (challenge == null)
             {
                 return NotFound();
             }
 
-            //    _context.Options.RemoveRange(challenge.Options);
-
+           
+           // _context.RemoveRange(challenge.Options);
             _context.Challenges.Remove(challenge);
             await _context.SaveChangesAsync();
 

@@ -1,4 +1,6 @@
-﻿namespace API.APIModels
+﻿using API.Models;
+
+namespace API.APIModels
 {
     public class ChallengeAM
     {
@@ -14,7 +16,7 @@
 
         public string? Question { get; set; }
 
-        public ICollection<ChallengeOptionAM> Options { get; set; }
+        public List<ChallengeOptionAM> Options { get; set; }
     }
 
     public class ChallengeOptionAM
