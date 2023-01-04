@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/challenges">Umsiting</RouterLink>
+            <RouterLink class="nav-link" to="/">Umsiting</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/run">Royn uppgávur</RouterLink>
