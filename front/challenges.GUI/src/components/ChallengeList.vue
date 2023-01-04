@@ -61,21 +61,17 @@
 
     const displayChallenge = (challenge) => {
         challengeStore.setActive(challenge);
-        challengeStore.editMode = false;
-        
+        challengeStore.editMode = false;        
     };
 
     const editChallenge = (challenge) => {
         challengeStore.setActive(challenge);
-        challengeStore.editMode = true;
-        
+        challengeStore.editMode = true;       
     };
 
     const newChallenge = () => {
         challengeStore.newEmpty();
     }
-
-
 
     onMounted(() => {
         challengeStore.fetchChallenges();

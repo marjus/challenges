@@ -83,7 +83,7 @@ export const useChallengeStore = defineStore("challenge",{
             this.activeChallenge = challenge
         },
         async newEmpty(){
-            const newChallenge = {options: [{},{},{},{}] };
+            const newChallenge = {options: [{id:1 },{id:2},{id:3},{id:4}] };
 
             this.setActive(newChallenge);
             this.editMode = true; 
@@ -93,12 +93,10 @@ export const useChallengeStore = defineStore("challenge",{
             this.activeChallenge.options.forEach(o=> o.isCorrect = false);
 
             var correct = this.activeChallenge.options.find((opt) => opt.id === option.id);
+
             if(correct){
                 correct.isCorrect = true;
             }
         }
-        // async deleteChallenge(challenge){
-        //     this.challenges.push(recipe);
-        // }
     },
 })
