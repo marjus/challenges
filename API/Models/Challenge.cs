@@ -29,6 +29,6 @@ namespace API.Models
 
         public int CorrectOptionId { get; set; }
 
-        public List<ChallengeOption> Options  { get; set; }
+        public List<ChallengeOption> Options { get; set; }
     }
 }
