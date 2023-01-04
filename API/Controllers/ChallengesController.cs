@@ -56,7 +56,7 @@ namespace API.Controllers
                 Text = challenge.Text,
                 Question = challenge.Question,
                 OrderInSequence = challenge.OrderInSequence,
-                Options = challenge.Options.Select(o => new ChallengeOptionAM { Content = o.Content, IsCorrect = o.IsCorrect }).ToList()
+                Options = challenge.Options.Select(o => new ChallengeOptionAM { Id = o.Id, Content = o.Content, IsCorrect = o.IsCorrect }).ToList()
             };
 
 
