@@ -7,11 +7,9 @@ namespace API.Models
         [Key]
         public int Id { get; set; }
 
-
         public int OrderInSequence { get; set; }
 
-
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         public string? Text { get; set; }
 
