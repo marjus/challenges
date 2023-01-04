@@ -46,8 +46,12 @@ export const useChallengeStore = defineStore("challenge",{
                 if(challenge.id && challenge.id>0){
                     const res = await axios.delete('https://learnchallengeapi.azurewebsites.net/api/challenges/' + challenge.id);
                     
-                    if(res.status != 3){
+                    if(res.status > 299){
                         this.axiosMessage =  res.status + " " + res.statusText;
+                    }
+                    else{
+                        this.fetchChallenges();
+                        this.loadRandom();
                     }
                 }
                 else{
@@ -72,7 +76,10 @@ export const useChallengeStore = defineStore("challenge",{
 
                 if(res.status > 297){
                     this.axiosMessage =  res.status + " " + res.statusText;
+                } else {
+                    this.fetchChallenges();
                 }
+                
             }
             catch(error) {
                 alert(error)
