@@ -21,7 +21,6 @@ namespace API.APIModels
 
     public class ChallengeOptionAM
     {
-        public int Id { get; set; }
 
         public string? Content { get; set; }
 

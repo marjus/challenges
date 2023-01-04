@@ -25,7 +25,7 @@ namespace API.Controllers
 
         // GET: api/Challenges
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Challenge>>> GetChallenges()
+        public async Task<ActionResult<IEnumerable<ChallengeAM>>> GetChallenges()
         {
             if (_context.Challenges == null)
             {
@@ -34,6 +34,7 @@ namespace API.Controllers
             return await _context.Challenges
                 .Include(c => c.Options)
                 .OrderBy(c => c.OrderInSequence)
+                .Select(c=> ToChallengeAM(c))
                 //.Select(c=> new ChallengeAM { 
                 //    Id = c.Id, 
                 //    Name = c.Name, 
@@ -45,6 +46,19 @@ namespace API.Controllers
                 // })
                 .ToListAsync();
         }
+
+        private static ChallengeAM ToChallengeAM(Challenge challenge) =>
+            new ChallengeAM
+            {
+                Id = challenge.Id,
+                Name = challenge.Name,
+                Description = challenge.Description,
+                Text = challenge.Text,
+                Question = challenge.Question,
+                OrderInSequence = challenge.OrderInSequence,
+                Options = challenge.Options.Select(o => new ChallengeOptionAM { Content = o.Content, IsCorrect = o.IsCorrect }).ToList()
+            };
+
 
         // GET: api/Challenges/5
         [HttpGet("{id}")]
