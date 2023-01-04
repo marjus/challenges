@@ -9,7 +9,8 @@ export const useChallengeStore = defineStore("challenge",{
         activeChallenge: {},
         activeChallengeIndex: Number,
         editMode: false,
-        runMode: false
+        runMode: false,
+        axiosMessage: " "
     }),
     getters: {
         getChallenges(state){
@@ -41,8 +42,16 @@ export const useChallengeStore = defineStore("challenge",{
         },
         async deleteChallenge(challenge){
             try {
+                alert("deleting");
                 if(challenge.id && challenge.id>0){
                     const res = await axios.delete('https://learnchallengeapi.azurewebsites.net/api/challenges/' + challenge.id);
+                    
+                    if(res.status != 3){
+                        this.axiosMessage =  res.status + " " + res.statusText;
+                    }
+                }
+                else{
+                    this.axiosMessage = "nothing to delete";
                 }
             }
             catch(error) {
@@ -52,11 +61,18 @@ export const useChallengeStore = defineStore("challenge",{
         },
         async saveChallenge(challenge) {
             try {
+                var res = {};
+
                 if(challenge.id && challenge.id>0){
-                    const res = await axios.put('https://learnchallengeapi.azurewebsites.net/api/challenges/' + challenge.id,  challenge);
+                    res = await axios.put('https://learnchallengeapi.azurewebsites.net/api/challenges/' + challenge.id,  challenge);
                 }
                 else{
-                    const res = await axios.post('https://learnchallengeapi.azurewebsites.net/api/challenges/',  challenge);
+                    alert("posting");
+                    res = await axios.post('https://learnchallengeapi.azurewebsites.net/api/challenges/',  challenge);
+                }
+
+                if(res.status != 197){
+                    this.axiosMessage =  res.status + " " + res.statusText;
                 }
             }
             catch(error) {

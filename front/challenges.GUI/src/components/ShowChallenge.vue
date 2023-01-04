@@ -1,15 +1,15 @@
 <template >
     <div class="container">
         <div class="border challenge" v-if="challengeStore.editMode">
-            <form>
+           
                 <div class="mb-3">
                     <label for="orderInSequence" class="form-label">Nummar</label>
-                    <input v-model="challengeStore.activeChallenge.orderInSequence" type="text" class="form-control" id="orderInSequence" aria-describedby="orderInSequenceHelp">
+                    <input v-model="challengeStore.activeChallenge.orderInSequence" required type="text" class="form-control" id="orderInSequence" aria-describedby="orderInSequenceHelp">
                     <div id="orderInSequenceHelp" class="form-text">Nær hendan uppgávan kemur í røðini</div>
                 </div>
                 <div class="mb-3">
                     <label for="challengeName" class="form-label">Navn</label>
-                    <input v-model="challengeStore.activeChallenge.name" type="text" class="form-control" id="challengeName" >
+                    <input v-model="challengeStore.activeChallenge.name" required type="text" class="form-control" id="challengeName" >
                     
                 </div>
                 <div class="mb-3">
@@ -24,7 +24,9 @@
                 </div>
                 <ShowOptions></ShowOptions>
                 <button class="btn btn-success" @click="saveChallenge(challengeStore.activeChallenge)"><i class="bi bi-cloud-plus"></i> Goym</button>
-            </form>
+                <button class="btn btn-danger float-end" @click="deleteChallenge(challengeStore.activeChallenge)"><i class="bi bi-x-circle"></i> Strika</button>
+                    
+       
         </div>
         <div v-else class="border challenge">
             <h5 class="challengeName">{{ challengeStore.activeChallenge.name }}</h5>
@@ -43,10 +45,14 @@
     const challengeStore = useChallengeStore();
 
     const saveChallenge = (challenge) => {
+        console.log(challenge);
         challengeStore.saveChallenge(challenge);
         challengeStore.editMode = false;
-        
     };
+
+    const deleteChallenge = (challenge) => {
+        challengeStore.deleteChallenge(challenge);
+    }
 </script>
 <style scoped>
     .challenge{

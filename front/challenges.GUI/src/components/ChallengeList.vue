@@ -1,12 +1,17 @@
 <template>
     <div class="row">
         <div class="col">
-        <h1 class="float-start">Uppgávur</h1></div><div class="col">
-        <button @click="newChallenge()" class="btn btn-success float-end"><i class="bi bi-plus-circle-dotted"></i> Nýggja uppgávu</button>
-    </div>
+            <h1 class="float-start">Uppgávur</h1></div><div class="col">
+            <button @click="newChallenge()" class="btn btn-success float-end mt-2"><i class="bi bi-plus-circle-dotted"></i> Nýggja uppgávu</button>
+        </div>
+        <div class="row" > 
+            <div class="col">
+                {{ challengeStore.axiosMessage }}
+            </div>
+        </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-7">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -50,7 +55,7 @@
 <script setup>
     import { ref, onMounted, computed } from "vue";
     import { useChallengeStore } from "@/stores/challenge";
-import ShowChallenge from "./ShowChallenge.vue";
+    import ShowChallenge from "./ShowChallenge.vue";
 
     const challengeStore = useChallengeStore();
 
@@ -70,9 +75,7 @@ import ShowChallenge from "./ShowChallenge.vue";
         challengeStore.newEmpty();
     }
 
-    const deleteChallenge = (challenge) => {
-        challengeStore.deleteChallenge(challenge);
-    }
+
 
     onMounted(() => {
         challengeStore.fetchChallenges();
